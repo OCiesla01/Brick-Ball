@@ -5,20 +5,24 @@ using UnityEngine;
 public class BallScript : MonoBehaviour
 {
 
-    public float speed = 10.0f;
     public bool isStarted = false;
+    public float destroyZone = -12.0f;
+    private Vector3 storedVelocity;
 
     Rigidbody rb;
-    public GameObject paddle;
-    // Start is called before the first frame update
+    private GameObject paddle;
+    private GameManager gameManager;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        paddle = GameObject.Find("Paddle");
     }
 
-    // Update is called once per frame
     void Update()
     {
+        Vector3 ballPositionOnPaddle = new Vector3(paddle.transform.position.x, paddle.transform.position.y + .8f, paddle.transform.position.z);
         if (Input.GetKeyDown(KeyCode.Space) && !isStarted)
         {
             LaunchBall();
@@ -27,7 +31,34 @@ public class BallScript : MonoBehaviour
 
         if (!isStarted)
         {
-            transform.position = new Vector3(paddle.transform.position.x, paddle.transform.position.y + .8f, paddle.transform.position.z);
+            transform.position = ballPositionOnPaddle;
+        }
+
+        if (transform.position.y < destroyZone)
+        {
+            gameManager.lives -= 1;
+
+            if (gameManager.lives > 0)
+            {
+                isStarted = false;
+                gameObject.transform.position = ballPositionOnPaddle;
+            }
+        }
+
+        if (gameManager.pauseGameScreen.activeSelf)
+        {
+            if (isStarted && rb.velocity != Vector3.zero)
+            {
+                storedVelocity = rb.velocity;
+                rb.velocity = Vector3.zero;
+            }
+        }
+        else
+        {
+            if (rb.velocity == Vector3.zero && storedVelocity != Vector3.zero)
+            {
+                rb.velocity = storedVelocity;
+            }
         }
     }
 
@@ -36,8 +67,8 @@ public class BallScript : MonoBehaviour
         float xValue = Random.Range(-1.0f, 1.0f);
         float yValue = 1.0f;
 
-        Vector3 direction = new Vector3(-1.0f, yValue, 0).normalized;
-        rb.velocity = direction * speed;
+        Vector3 direction = new Vector3(xValue, yValue, 0).normalized;
+        rb.velocity = direction * gameManager.ballSpeed;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -45,12 +76,13 @@ public class BallScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Brick"))
         {
             Destroy(collision.gameObject);
-            speed += 1;
+            gameManager.bricksAmount -= 1;
+            gameManager.score += 1;
         }
 
-        if (rb.velocity.magnitude != speed)
+        if (rb.velocity.magnitude != gameManager.ballSpeed)
         {
-            rb.velocity = rb.velocity.normalized * speed;
+            rb.velocity = rb.velocity.normalized * gameManager.ballSpeed;
         }
     }
 }
