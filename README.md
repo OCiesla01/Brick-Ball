@@ -6,4 +6,9 @@ _The player's goal in this game is to clear the stage by destroying all the bric
 ***Brick ball is one of my first projects in Unity**
 
 ***V0.1***
+
 The basic functionality of the game has been created - the ball can move and bounce accordingly, the player can control the paddle, a prefabricated brick with the ability to change colors has been created
+
+***V0.2***
+
+The game logic has been completed, the game is running. Created lv1
