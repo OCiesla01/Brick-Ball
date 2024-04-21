@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Brick
   - GameOverScreen
+  - Barrier
   layers:
   - Default
   - TransparentFX
