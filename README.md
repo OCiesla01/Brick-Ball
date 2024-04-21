@@ -12,3 +12,7 @@ The basic functionality of the game has been created - the ball can move and bou
 ***V0.2***
 
 The game logic has been completed, the game is running. Created lv1
+
+***V0.3***
+
+Nine additional levels have been created. Main menu with level selection has been created.
