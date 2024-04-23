@@ -16,3 +16,7 @@ The game logic has been completed, the game is running. Created lv1
 ***V0.3***
 
 Nine additional levels have been created. Main menu with level selection has been created.
+
+***V0.4***
+
+Added Music and SFX. Optimized code. The game works
