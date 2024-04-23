@@ -9,24 +9,38 @@ public class GameManager : MonoBehaviour
 
     public int bricksAmount;
     public int level;
-    public float ballSpeed;
+    public float ballSpeed = 15.0f;
     public int lives;
     public bool isGameOver = false;
     public int score = 0;
 
     private GameObject ball;
-    public GameObject gameOverScreen;
-    public GameObject levelPassedScreen;
-    public GameObject pauseGameScreen;
     private TextMeshProUGUI scoreui;
-    public GameObject live1;
-    public GameObject live2;
-    public GameObject live3;
-    // Start is called before the first frame update
+
+    public GameObject pauseGameScreen;
+    [SerializeField]
+    private GameObject gameOverScreen;
+    [SerializeField]
+    private GameObject levelPassedScreen;
+
+    [SerializeField]
+    private GameObject live1;
+    [SerializeField]
+    private GameObject live2;
+    [SerializeField]
+    private GameObject live3;
+
+    private AudioSource musicSource;
+    private AudioSource levelPassedAudio;
+
     void Start()
     {
         ball = GameObject.Find("Ball");
         scoreui = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        musicSource = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        levelPassedAudio = GameObject.Find("LevelPassedAudio").GetComponent<AudioSource>();
+
+        musicSource.Play();
     }
 
     // Update is called once per frame
@@ -40,10 +54,12 @@ public class GameManager : MonoBehaviour
             if (pauseGameScreen.activeSelf)
             {
                 pauseGameScreen.SetActive(false);
+                musicSource.Play();
             }
             else
             {
                 pauseGameScreen.SetActive(true);
+                musicSource.Stop();
             }
         }
     }
@@ -58,6 +74,7 @@ public class GameManager : MonoBehaviour
 
         if (bricksAmount <= 0 && lives > 0)
         {
+            levelPassedAudio.Play();
             GameOverActivities();
             levelPassedScreen.SetActive(true);
         }
@@ -66,6 +83,7 @@ public class GameManager : MonoBehaviour
     void GameOverActivities()
     {
         isGameOver = true;
+        musicSource.Stop();
         Destroy(ball);
     }
 
@@ -106,6 +124,7 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         pauseGameScreen.SetActive(false);
+        musicSource.Play();
     }
 
     void UpdateUI()

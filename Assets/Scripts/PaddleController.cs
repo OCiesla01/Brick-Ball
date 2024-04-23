@@ -5,7 +5,7 @@ using UnityEngine;
 public class PaddleController : MonoBehaviour
 {
 
-    private float speed = 10.0f;
+    private float speed = 12.5f;
     private float horizontalBound = 16.45f;
 
     private GameManager gameManager;

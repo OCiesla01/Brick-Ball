@@ -5,7 +5,8 @@ using UnityEngine;
 public class BrickScript : MonoBehaviour
 {
 
-    public Color color;
+    [SerializeField]
+    private Color color;
 
     Renderer rend;
     // Start is called before the first frame update

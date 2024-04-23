@@ -5,19 +5,21 @@ using UnityEngine;
 public class BallScript : MonoBehaviour
 {
 
-    public bool isStarted = false;
-    public float destroyZone = -12.0f;
+    private bool isStarted = false;
+    private float destroyZone = -12.0f;
     private Vector3 storedVelocity;
 
-    Rigidbody rb;
+    private Rigidbody rb;
     private GameObject paddle;
     private GameManager gameManager;
+    private AudioSource audioSource;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         paddle = GameObject.Find("Paddle");
+        audioSource = GameObject.Find("Ball").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -73,6 +75,8 @@ public class BallScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        audioSource.Play();
+
         if (collision.gameObject.CompareTag("Brick"))
         {
             Destroy(collision.gameObject);
