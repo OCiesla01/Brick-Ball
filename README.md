@@ -4,6 +4,10 @@ _Brick ball is a recreation of the popular games like **Arkanoid** or **Breakout
 _The player's goal in this game is to clear the stage by destroying all the bricks on the screen, using a ball that can be bounced off the walls and off the paddle that the player can control._
 
 ***Brick ball is one of my first projects in Unity**
+![1](https://github.com/OCiesla01/Brick-Ball/assets/130390861/de5365e0-cf51-4dae-a7d1-820efbf130c3)
+![2](https://github.com/OCiesla01/Brick-Ball/assets/130390861/5afbaa47-1d5a-4232-8bd0-25653a0c4f1e)
+![3](https://github.com/OCiesla01/Brick-Ball/assets/130390861/af218917-a5b4-4bcd-bfbe-c161530723fe)
+![4](https://github.com/OCiesla01/Brick-Ball/assets/130390861/e97af2aa-b36d-4d10-85f9-4285c2110eb5)
 
 ***V0.1***
 
@@ -19,4 +23,8 @@ Nine additional levels have been created. Main menu with level selection has bee
 
 ***V0.4***
 
-Added Music and SFX. Optimized code. The game works
+Added Music and SFX. Optimized code. The game works.
+
+***V0.4***
+
+Fixed size of some UI elements.
