@@ -1491,13 +1491,12 @@ MonoBehaviour:
   lives: 3
   isGameOver: 0
   score: 0
+  pauseGameScreen: {fileID: 852787859}
   gameOverScreen: {fileID: 1036499194}
   levelPassedScreen: {fileID: 9143389}
-  pauseGameScreen: {fileID: 852787859}
   live1: {fileID: 1353363686}
   live2: {fileID: 2048237673}
   live3: {fileID: 557004783}
-  levelPassed: {fileID: 565918152}
 --- !u!1001 &303650924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6071,7 +6070,7 @@ Transform:
   m_GameObject: {fileID: 2020413675}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11.2, z: 0}
+  m_LocalPosition: {x: 0, y: 11.5, z: 0}
   m_LocalScale: {x: 37.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
